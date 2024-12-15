@@ -1,0 +1,46 @@
+def encrypt(plain_text, width=4):
+    length = len(plain_text)
+    cipher_text = ""
+
+    # Loop through each column
+    for k in range(width):
+        # Loop through each row
+        for i in range(k, length, width):
+            cipher_text += plain_text[i]
+
+    return cipher_text
+
+def decrypt(cipher_text, width=4):
+    length = len(cipher_text)
+    plain_text = [''] * length
+    idx = 0
+
+    # Loop through each column
+    for k in range(width):
+        # Loop through each row
+        for i in range(k, length, width):
+            plain_text[i] = cipher_text[idx]
+            idx += 1
+
+    return ''.join(plain_text)
+
+# Example usage
+plain_text = "Computer Science"
+width = 7
+
+# First encryption
+first_encryption = encrypt(plain_text, width)
+# Second encryption (double transposition)
+cipher_text = encrypt(first_encryption, width)
+
+# Decrypt the cipher text (double transposition)
+first_decryption = decrypt(cipher_text, width)
+# Second decryption
+decrypted_text = decrypt(first_decryption, width)
+
+print(f"Plain Text: {plain_text}")
+print(f"Encrypted Text: {cipher_text}")
+print(f"Decrypted Text: {decrypted_text}")
+
+ANS
+
